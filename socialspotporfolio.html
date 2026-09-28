@@ -1,0 +1,4053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Social Spot | Hassnain Ali</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #06070b;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --bg: #06070b;
+    --bg2: #0b0e15;
+    --card: rgba(255,255,255,0.045);
+
+    --white: #ffffff;
+    --muted: #98a2b3;
+
+    --cyan: #00e5ff;
+    --blue: #4f46e5;
+    --purple: #8b5cf6;
+    --pink: #ff4d8d;
+    --green: #25d366;
+    --gold: #ffc857;
+
+    --border: rgba(255,255,255,0.09);
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.grid-bg {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: orbMove 12s ease-in-out infinite alternate;
+}
+
+.orb.one {
+    width: 450px;
+    height: 450px;
+    background: #00c8ff;
+    top: -180px;
+    left: -100px;
+}
+
+.orb.two {
+    width: 500px;
+    height: 500px;
+    background: #6d28d9;
+    right: -180px;
+    top: 25%;
+    animation-delay: 2s;
+}
+
+.orb.three {
+    width: 350px;
+    height: 350px;
+    background: #ec4899;
+    left: 35%;
+    bottom: -180px;
+    animation-delay: 4s;
+}
+
+@keyframes orbMove {
+
+    0% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(40px,-30px) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-30px,50px) scale(0.95);
+    }
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 1000;
+
+    background: rgba(6,7,11,0.65);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid transparent;
+
+    transition: 0.3s;
+}
+
+.navbar.scrolled {
+    background: rgba(6,7,11,0.92);
+    border-bottom-color: var(--border);
+}
+
+.nav-inner {
+    width: min(1250px, 92%);
+    min-height: 78px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.55rem;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.logo-dot {
+    color: var(--cyan);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    list-style: none;
+}
+
+.nav-menu a {
+    color: #aeb7c5;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.nav-menu a:hover {
+    color: white;
+}
+
+.nav-cta {
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    background: var(--green);
+
+    color: white !important;
+}
+
+.nav-cta:hover {
+    box-shadow:
+        0 0 25px rgba(37,211,102,0.4);
+}
+
+.menu-toggle {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    width: min(1250px,92%);
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding-top: 145px;
+    padding-bottom: 80px;
+
+    display: grid;
+
+    grid-template-columns: 1.15fr 0.85fr;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+/* Hero content */
+
+.hero-content {
+    animation: heroIn 1s ease forwards;
+}
+
+@keyframes heroIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 15px;
+
+    border: 1px solid rgba(0,229,255,0.25);
+
+    background: rgba(0,229,255,0.07);
+
+    border-radius: 50px;
+
+    color: var(--cyan);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 22px;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 12px #22c55e;
+
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(1.5);
+    }
+}
+
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(3rem, 6vw, 5.5rem);
+
+    line-height: 0.98;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 28px;
+}
+
+.hero h1 .outline {
+    color: transparent;
+
+    -webkit-text-stroke: 1px rgba(255,255,255,0.6);
+}
+
+.gradient {
+    background:
+        linear-gradient(
+            100deg,
+            #00e5ff,
+            #8b5cf6,
+            #ff4d8d
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-size: 200% auto;
+
+    animation: gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.hero-description {
+    color: var(--muted);
+
+    max-width: 650px;
+
+    font-size: 1.04rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+.hero-description strong {
+    color: white;
+}
+
+/* Hero buttons */
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 13px;
+
+    margin-bottom: 45px;
+}
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 14px 22px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    font-size: 0.9rem;
+
+    transition: 0.35s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.btn-primary {
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--blue)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 10px 35px rgba(0,229,255,0.18);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 18px 45px rgba(0,229,255,0.32);
+}
+
+.btn-dark {
+    border: 1px solid var(--border);
+
+    background: rgba(255,255,255,0.04);
+
+    color: white;
+}
+
+.btn-dark:hover {
+    background: rgba(255,255,255,0.09);
+
+    transform: translateY(-4px);
+}
+
+.btn-wa {
+    background: var(--green);
+
+    color: white;
+}
+
+.btn-wa:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(37,211,102,0.3);
+}
+
+/* Hero stats */
+
+.hero-stats {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 38px;
+}
+
+.stat {
+    position: relative;
+}
+
+.stat:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    right: -20px;
+
+    top: 5px;
+
+    width: 1px;
+
+    height: 35px;
+
+    background: var(--border);
+}
+
+.stat-number {
+    display: block;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.65rem;
+
+    font-weight: 800;
+}
+
+.stat-label {
+    color: var(--muted);
+
+    font-size: 0.72rem;
+}
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.hero-profile {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    min-height: 520px;
+}
+
+.profile-box {
+    width: 360px;
+    height: 440px;
+
+    position: relative;
+
+    transform: rotate(4deg);
+
+    animation:
+        profileFloat 5s ease-in-out infinite;
+
+    z-index: 2;
+}
+
+@keyframes profileFloat {
+
+    0%,
+    100% {
+        transform:
+            rotate(4deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            rotate(1deg)
+            translateY(-18px);
+    }
+}
+
+.profile-box::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -3px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    animation: borderRotate 5s linear infinite;
+
+    z-index: -1;
+}
+
+@keyframes borderRotate {
+
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.profile-inner {
+    width: 100%;
+    height: 100%;
+
+    background: #11151e;
+
+    border-radius: 32px;
+
+    overflow: hidden;
+
+    border: 7px solid #080a0f;
+
+    position: relative;
+}
+
+.profile-inner img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center top;
+
+    filter: saturate(1.05);
+
+    transition: 0.5s;
+}
+
+.profile-box:hover .profile-inner img {
+    transform: scale(1.06);
+}
+
+/* Profile glass info */
+
+.profile-info {
+    position: absolute;
+
+    bottom: 22px;
+    left: 22px;
+    right: 22px;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: rgba(5,7,11,0.75);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    transform: rotate(-4deg);
+}
+
+.profile-info h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.1rem;
+
+    margin-bottom: 2px;
+}
+
+.profile-info p {
+    color: var(--muted);
+
+    font-size: 0.75rem;
+}
+
+/* Floating labels */
+
+.float-card {
+    position: absolute;
+
+    z-index: 5;
+
+    padding: 12px 16px;
+
+    border-radius: 12px;
+
+    background: rgba(15,18,26,0.8);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.4);
+
+    font-size: 0.75rem;
+
+    animation: cardFloat 4s ease-in-out infinite;
+}
+
+.float-card i {
+    color: var(--cyan);
+
+    margin-right: 7px;
+}
+
+.float-one {
+    top: 85px;
+    left: 0;
+}
+
+.float-two {
+    right: -5px;
+    bottom: 110px;
+
+    animation-delay: 1s;
+}
+
+@keyframes cardFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section {
+    width: min(1250px,92%);
+
+    margin: auto;
+
+    padding: 110px 0 50px;
+}
+
+.section-title {
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: 0 auto 55px;
+}
+
+.section-tag {
+    color: var(--cyan);
+
+    font-size: 0.73rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(2rem,4vw,3.4rem);
+
+    line-height: 1.05;
+
+    margin-bottom: 16px;
+}
+
+.section-title p {
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-layout {
+    display: grid;
+
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 25px;
+}
+
+.about-intro {
+    padding: 40px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,229,255,0.08),
+            rgba(139,92,246,0.05)
+        );
+
+    border: 1px solid var(--border);
+}
+
+.about-intro h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 2rem;
+
+    line-height: 1.15;
+
+    margin-bottom: 20px;
+}
+
+.about-intro p {
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+.about-signature {
+    margin-top: 30px;
+
+    color: var(--cyan);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-weight: 700;
+}
+
+.about-features {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.feature-card {
+    padding: 28px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    transition: 0.4s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(0,229,255,0.3);
+
+    background:
+        rgba(0,229,255,0.055);
+}
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,229,255,0.08);
+
+    color: var(--cyan);
+
+    margin-bottom: 16px;
+}
+
+.feature-card h4 {
+    font-family: "Space Grotesk", sans-serif;
+
+    margin-bottom: 7px;
+}
+
+.feature-card p {
+    color: var(--muted);
+
+    font-size: 0.83rem;
+
+    line-height: 1.6;
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.service-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.service-card {
+    position: relative;
+
+    padding: 30px;
+
+    min-height: 250px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s,
+        border 0.4s,
+        background 0.4s;
+}
+
+.service-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -50px;
+    bottom: -50px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    filter: blur(70px);
+
+    opacity: 0;
+
+    transition: 0.4s;
+}
+
+.service-card:hover {
+    transform: translateY(-9px);
+
+    border-color:
+        rgba(0,229,255,0.3);
+
+    background:
+        rgba(255,255,255,0.065);
+}
+
+.service-card:hover::after {
+    opacity: 0.18;
+}
+
+.service-number {
+    color: rgba(255,255,255,0.25);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 0.75rem;
+
+    position: absolute;
+
+    right: 25px;
+    top: 25px;
+}
+
+.service-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,229,255,0.12),
+            rgba(139,92,246,0.12)
+        );
+
+    color: var(--cyan);
+
+    font-size: 1.5rem;
+
+    margin-bottom: 22px;
+}
+
+.service-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.2rem;
+
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: var(--muted);
+
+    font-size: 0.85rem;
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   PLATFORMS
+========================================================= */
+
+.platforms {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 12px;
+}
+
+.platform {
+    padding: 25px 15px;
+
+    text-align: center;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    transition: 0.35s;
+}
+
+.platform:hover {
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(0,229,255,0.3);
+}
+
+.platform i {
+    font-size: 1.7rem;
+
+    margin-bottom: 10px;
+}
+
+.platform span {
+    display: block;
+
+    color: #cbd5e1;
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+}
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.portfolio-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.project {
+    min-height: 330px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 1px solid var(--border);
+
+    background: #10131b;
+
+    transition: 0.45s;
+}
+
+.project:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(255,255,255,0.2);
+}
+
+.project-bg {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.9;
+
+    transition: 0.5s;
+}
+
+.project:hover .project-bg {
+    transform: scale(1.08);
+}
+
+.project-1 {
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #ff4d8d,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #161928,
+            #34204e
+        );
+}
+
+.project-2 {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #00e5ff,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #071a23,
+            #14204b
+        );
+}
+
+.project-3 {
+    background:
+        radial-gradient(
+            circle at 30% 80%,
+            #ffc857,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #251817,
+            #172033
+        );
+}
+
+.project-4 {
+    background:
+        radial-gradient(
+            circle at 70% 70%,
+            #8b5cf6,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #171229,
+            #0c1720
+        );
+}
+
+.project-content {
+    position: absolute;
+
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+
+    z-index: 2;
+}
+
+.project-category {
+    color: var(--cyan);
+
+    font-size: 0.7rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+.project h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.5rem;
+
+    margin: 6px 0 8px;
+}
+
+.project p {
+    color: #c0c7d3;
+
+    font-size: 0.8rem;
+
+    max-width: 450px;
+}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-wrapper {
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.skills-intro h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 2.4rem;
+
+    line-height: 1.1;
+
+    margin-bottom: 18px;
+}
+
+.skills-intro p {
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+.skills-list {
+    display: grid;
+
+    gap: 22px;
+}
+
+.skill-head {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    font-size: 0.84rem;
+
+    font-weight: 600;
+}
+
+.skill-head span:last-child {
+    color: var(--cyan);
+}
+
+.skill-track {
+    width: 100%;
+
+    height: 8px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    overflow: hidden;
+}
+
+.skill-fill {
+    width: 0;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    transition:
+        width 1.6s cubic-bezier(.22,1,.36,1);
+}
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+.results-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+.result-card {
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid var(--border);
+}
+
+.result-label {
+    color: var(--cyan);
+
+    font-size: 0.7rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 800;
+}
+
+.result-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    margin: 10px 0;
+}
+
+.result-card > p {
+    color: var(--muted);
+
+    font-size: 0.82rem;
+}
+
+.result-metrics {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+}
+
+.metric strong {
+    display: block;
+
+    color: white;
+
+    font-size: 1.25rem;
+}
+
+.metric span {
+    color: var(--muted);
+
+    font-size: 0.65rem;
+}
+
+/* =========================================================
+   WHY US
+========================================================= */
+
+.why-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 15px;
+}
+
+.why-card {
+    padding: 28px 22px;
+
+    border-radius: 18px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    transition: 0.35s;
+}
+
+.why-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(0,229,255,0.3);
+}
+
+.why-card i {
+    color: var(--cyan);
+
+    font-size: 1.7rem;
+
+    margin-bottom: 17px;
+}
+
+.why-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1rem;
+
+    margin-bottom: 8px;
+}
+
+.why-card p {
+    color: var(--muted);
+
+    font-size: 0.77rem;
+
+    line-height: 1.6;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-section {
+    padding-bottom: 110px;
+}
+
+.contact-box {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 60px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(0,229,255,0.08),
+            rgba(139,92,246,0.08),
+            rgba(255,77,141,0.06)
+        );
+
+    border: 1px solid var(--border);
+}
+
+.contact-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    right: -100px;
+    top: -100px;
+
+    background: var(--cyan);
+
+    filter: blur(100px);
+
+    opacity: 0.18;
+}
+
+.contact-layout {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 60px;
+}
+
+.contact-info h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 2.5rem;
+
+    line-height: 1.05;
+
+    margin-bottom: 15px;
+}
+
+.contact-info > p {
+    color: var(--muted);
+
+    font-size: 0.9rem;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+.contact-details {
+    display: grid;
+
+    gap: 13px;
+}
+
+.contact-detail {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #cbd5e1;
+
+    font-size: 0.8rem;
+}
+
+.contact-detail i {
+    color: var(--cyan);
+
+    width: 20px;
+}
+
+.contact-form {
+    display: grid;
+
+    gap: 15px;
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.input-group label {
+    display: block;
+
+    color: #cbd5e1;
+
+    font-size: 0.75rem;
+
+    margin-bottom: 7px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--border);
+
+    background:
+        rgba(0,0,0,0.2);
+
+    color: white;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.input-group select option {
+    background: #11151e;
+}
+
+.input-group textarea {
+    min-height: 125px;
+
+    resize: vertical;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 20px rgba(0,229,255,0.1);
+}
+
+.form-submit {
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 9px;
+
+    background: var(--green);
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.form-submit:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(37,211,102,0.25);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--border);
+
+    background: #030408;
+
+    padding: 60px 0 25px;
+}
+
+.footer-inner {
+    width: min(1250px,92%);
+
+    margin: auto;
+}
+
+.footer-top {
+    display: grid;
+
+    grid-template-columns:
+        1.4fr 1fr 1fr 1fr;
+
+    gap: 40px;
+
+    padding-bottom: 45px;
+}
+
+.footer-logo {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.5rem;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+
+    display: inline-block;
+}
+
+.footer-logo span {
+    color: var(--cyan);
+}
+
+.footer-about {
+    color: var(--muted);
+
+    max-width: 330px;
+
+    font-size: 0.8rem;
+
+    line-height: 1.7;
+}
+
+.socials {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.socials a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    color: #b8c0cc;
+
+    font-size: 0.8rem;
+
+    transition: 0.3s;
+}
+
+.socials a:hover {
+    color: #000;
+
+    background: var(--cyan);
+
+    transform: translateY(-4px);
+}
+
+.footer-col h4 {
+    font-family: "Space Grotesk", sans-serif;
+
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 9px;
+}
+
+.footer-col a {
+    color: var(--muted);
+
+    font-size: 0.78rem;
+
+    transition: 0.3s;
+}
+
+.footer-col a:hover {
+    color: var(--cyan);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+
+    padding-top: 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #667085;
+
+    font-size: 0.7rem;
+}
+
+/* =========================================================
+   SCROLL ANIMATION
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(45px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+
+    transform: translateX(-50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal-left.show {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+
+    transform: translateX(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal-right.show {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        padding-top: 130px;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-profile {
+        min-height: 470px;
+
+        order: -1;
+    }
+
+    .service-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .platforms {
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .why-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .skills-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:760px) {
+
+    .nav-menu {
+        position: absolute;
+
+        top: 78px;
+        left: 0;
+
+        width: 100%;
+
+        background: rgba(6,7,11,0.97);
+
+        backdrop-filter: blur(20px);
+
+        flex-direction: column;
+
+        padding: 25px;
+
+        display: none;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+
+        letter-spacing: -2px;
+    }
+
+    .profile-box {
+        width: 290px;
+        height: 370px;
+    }
+
+    .float-one {
+        left: -5px;
+    }
+
+    .float-two {
+        right: -5px;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .platforms {
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .contact-box {
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+}
+
+@media(max-width:480px) {
+
+    .hero {
+        width: 94%;
+    }
+
+    .hero h1 {
+        font-size: 2.45rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        gap: 22px;
+    }
+
+    .stat:not(:last-child)::after {
+        display: none;
+    }
+
+    .profile-box {
+        width: 250px;
+        height: 320px;
+    }
+
+    .hero-profile {
+        min-height: 400px;
+    }
+
+    .platforms {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     BACKGROUND
+====================================================== -->
+
+<div class="background">
+
+    <div class="grid-bg"></div>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+
+</div>
+
+
+<!-- ======================================================
+     NAVBAR
+====================================================== -->
+
+<header class="navbar" id="navbar">
+
+    <div class="nav-inner">
+
+        <a href="#home" class="logo">
+            Social<span class="logo-dot">Spot.</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open Menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#services">Services</a>
+            </li>
+
+            <li>
+                <a href="#work">Portfolio</a>
+            </li>
+
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+            <li>
+                <a
+                    class="nav-cta"
+                    href="https://wa.me/923487551374"
+                    target="_blank">
+
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Let's Talk
+
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</header>
+
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<section class="hero" id="home">
+
+
+    <div class="hero-content">
+
+        <div class="badge">
+
+            <span class="badge-dot"></span>
+
+            Available for New Projects
+
+        </div>
+
+
+        <h1>
+
+            I Build Brands That
+            <span class="gradient">
+                Get Noticed.
+            </span>
+
+            <br>
+
+            <span class="outline">
+                & Grow Online.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            I'm <strong>Hassnain Ali</strong>, a digital marketer
+            and founder of <strong>Social Spot</strong>.
+
+            I help businesses grow through
+            <strong>social media marketing, paid advertising,
+            WordPress development, SEO and graphic design.</strong>
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#contact"
+                class="btn btn-primary">
+
+                <i class="fa-solid fa-rocket"></i>
+
+                Start a Project
+
+            </a>
+
+
+            <a
+                href="#work"
+                class="btn btn-dark">
+
+                <i class="fa-solid fa-eye"></i>
+
+                View Portfolio
+
+            </a>
+
+
+            <a
+                href="https://wa.me/923487551374?text=Hi%20Hassnain,%20I%20want%20to%20discuss%20a%20project."
+                target="_blank"
+                class="btn btn-wa">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                WhatsApp
+
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    50+
+                </span>
+
+                <span class="stat-label">
+                    Campaigns Managed
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    30+
+                </span>
+
+                <span class="stat-label">
+                    Web Projects
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    120+
+                </span>
+
+                <span class="stat-label">
+                    Designs
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE -->
+
+    <div class="hero-profile">
+
+        <div class="float-card float-one">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Digital Growth
+
+        </div>
+
+
+        <div class="profile-box">
+
+            <div class="profile-inner">
+
+                <img
+                    src="file:///D:/myportfolio/hassnain ali.jpeg"
+                    alt="Hassnain Ali">
+
+                <div class="profile-info">
+
+                    <h3>
+                        Hassnain Ali
+                    </h3>
+
+                    <p>
+                        Founder · Social Spot
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="float-card float-two">
+
+            <i class="fa-solid fa-code"></i>
+
+            Web + Marketing
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ABOUT
+====================================================== -->
+
+<section id="about">
+
+
+    <div class="section-title reveal">
+
+        <div class="section-tag">
+            About Social Spot
+        </div>
+
+        <h2>
+            One Studio.
+            <span class="gradient">
+                Multiple Digital Solutions.
+            </span>
+        </h2>
+
+        <p>
+            Social Spot combines marketing, development and
+            creative design to help businesses create a strong
+            digital presence.
+        </p>
+
+    </div>
+
+
+    <div class="about-layout">
+
+
+        <div class="about-intro reveal-left">
+
+            <h3>
+                Turning Ideas Into
+                Digital Growth.
+            </h3>
+
+            <p>
+                Social Spot is a digital studio founded by
+                Hassnain Ali.
+
+                The goal is simple: help businesses look
+                professional online, reach the right audience
+                and convert attention into opportunities.
+            </p>
+
+            <p style="margin-top:15px;">
+
+                From social media campaigns and paid ads to
+                WordPress websites, SEO and graphic design,
+                we create solutions around your business goals.
+
+            </p>
+
+            <div class="about-signature">
+                — Hassnain Ali
+            </div>
+
+        </div>
+
+
+        <div class="about-features">
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <h4>
+                    Strategy First
+                </h4>
+
+                <p>
+                    Every project starts with understanding
+                    the business, audience and objective.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+
+                <h4>
+                    Data Driven
+                </h4>
+
+                <p>
+                    Campaigns can be measured through
+                    meaningful performance metrics.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+
+                <h4>
+                    Modern Websites
+                </h4>
+
+                <p>
+                    Responsive WordPress websites built
+                    around usability and performance.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card reveal">
+
+                <div class="feature-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+
+                <h4>
+                    Creative Design
+                </h4>
+
+                <p>
+                    Visual content and brand identity designed
+                    to make your business memorable.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     SERVICES
+====================================================== -->
+
+<section id="services">
+
+
+    <div class="section-title reveal">
+
+        <div class="section-tag">
+            What I Do
+        </div>
+
+        <h2>
+            Services Built For
+            <span class="gradient">
+                Digital Growth.
+            </span>
+        </h2>
+
+        <p>
+            From marketing and advertising to websites and
+            creative design, Social Spot covers the essential
+            digital services your brand needs.
+        </p>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <div class="service-card reveal">
+
+            <span class="service-number">
+                01
+            </span>
+
+            <div class="service-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+
+            <h3>
+                Social Media Marketing
+            </h3>
+
+            <p>
+                Content strategy, reels, posting calendars,
+                community management and complete social
+                media management.
+            </p>
+
+        </div>
+
+
+        <div class="service-card reveal">
+
+            <span class="service-number">
+                02
+            </span>
+
+            <div class="service-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <h3>
+                Meta & TikTok Ads
+            </h3>
+
+            <p>
+                Paid advertising, audience targeting,
+                retargeting, creative testing and
+                conversion-focused campaign management.
+            </p>
+
+        </div>
+
+
+        <div class="service-card reveal">
+
+            <span class="service-number">
+                03
+            </span>
+
+            <div class="service-icon">
+                <i class="fa-brands fa-wordpress"></i>
+            </div>
+
+            <h3>
+                WordPress Development
+            </h3>
+
+            <p>
+                Business websites, landing pages, e-commerce
+                websites and responsive WordPress solutions.
+            </p>
+
+        </div>
+
+
+        <div class="service-card reveal">
+
+            <span class="service-number">
+                04
+            </span>
+
+            <div class="service-icon">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+            </div>
+
+            <h3>
+                SEO & E-Commerce
+            </h3>
+
+            <p>
+                Keyword research, on-page SEO, technical
+                optimization and e-commerce listing optimization.
+            </p>
+
+        </div>
+
+
+        <div class="service-card reveal">
+
+            <span class="service-number">
+                05
+            </span>
+
+            <div class="service-icon">
+                <i class="fa-solid fa-pen-nib"></i>
+            </div>
+
+            <h3>
+                Graphic Design
+            </h3>
+
+            <p>
+                Social media creatives, logos, brand identity,
+                thumbnails, banners and marketing materials.
+            </p>
+
+        </div>
+
+
+        <div class="service-card reveal">
+
+            <span class="service-number">
+                06
+            </span>
+
+            <div class="service-icon">
+                <i class="fa-solid fa-film"></i>
+            </div>
+
+            <h3>
+                Content Creation
+            </h3>
+
+            <p>
+                Creative concepts, short-form video ideas,
+                captions and visual content for social platforms.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PLATFORMS
+====================================================== -->
+
+<section>
+
+
+    <div class="section-title reveal">
+
+        <div class="section-tag">
+            Platforms
+        </div>
+
+        <h2>
+            Your Brand.
+            <span class="gradient">
+                Everywhere It Matters.
+            </span>
+        </h2>
+
+    </div>
+
+
+    <div class="platforms">
+
+
+        <div class="platform reveal">
+
+            <i
+                class="fa-brands fa-facebook-f"
+                style="color:#1877f2;">
+            </i>
+
+            <span>
+                Facebook
+            </span>
+
+        </div>
+
+
+        <div class="platform reveal">
+
+            <i
+                class="fa-brands fa-instagram"
+                style="color:#e4405f;">
+            </i>
+
+            <span>
+                Instagram
+            </span>
+
+        </div>
+
+
+        <div class="platform reveal">
+
+            <i
+                class="fa-brands fa-tiktok"
+                style="color:#00f2fe;">
+            </i>
+
+            <span>
+                TikTok
+            </span>
+
+        </div>
+
+
+        <div class="platform reveal">
+
+            <i
+                class="fa-brands fa-whatsapp"
+                style="color:#25d366;">
+            </i>
+
+            <span>
+                WhatsApp
+            </span>
+
+        </div>
+
+
+        <div class="platform reveal">
+
+            <i
+                class="fa-brands fa-linkedin-in"
+                style="color:#0a66c2;">
+            </i>
+
+            <span>
+                LinkedIn
+            </span>
+
+        </div>
+
+
+        <div class="platform reveal">
+
+            <i
+                class="fa-brands fa-pinterest-p"
+                style="color:#e60023;">
+            </i>
+
+            <span>
+                Pinterest
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PORTFOLIO
+====================================================== -->
+
+<section id="work">
+
+
+    <div class="section-title reveal">
+
+        <div class="section-tag">
+            Selected Work
+        </div>
+
+        <h2>
+            Work That Shows
+            <span class="gradient">
+                What I Can Build.
+            </span>
+        </h2>
+
+        <p>
+            Replace these project cards with your real
+            client projects, screenshots and case studies.
+        </p>
+
+    </div>
+
+
+    <div class="portfolio-grid">
+
+
+        <div class="project reveal">
+
+            <div class="project-bg project-1"></div>
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    Social Media
+                </span>
+
+                <h3>
+                    Fashion Brand Growth
+                </h3>
+
+                <p>
+                    Instagram content strategy, reels,
+                    audience growth and paid campaign planning.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <div class="project-bg project-2"></div>
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    WordPress
+                </span>
+
+                <h3>
+                    E-Commerce Website
+                </h3>
+
+                <p>
+                    Responsive WordPress e-commerce website
+                    with product-focused structure.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <div class="project-bg project-3"></div>
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    Graphic Design
+                </span>
+
+                <h3>
+                    Brand Identity System
+                </h3>
+
+                <p>
+                    Logo, color system, social creatives
+                    and complete visual identity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <div class="project-bg project-4"></div>
+
+            <div class="project-content">
+
+                <span class="project-category">
+                    Paid Advertising
+                </span>
+
+                <h3>
+                    E-Commerce Ad Campaign
+                </h3>
+
+                <p>
+                    Campaign structure, creative testing,
+                    targeting and retargeting strategy.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     SKILLS
+====================================================== -->
+
+<section id="skills">
+
+
+    <div class="skills-wrapper">
+
+
+        <div class="skills-intro reveal-left">
+
+            <div class="section-tag">
+                My Expertise
+            </div>
+
+            <h3>
+                Skills That Turn
+                Ideas Into Execution.
+            </h3>
+
+            <p>
+                I combine marketing, technical and creative
+                skills to build complete digital solutions
+                instead of focusing on only one part of the
+                customer journey.
+            </p>
+
+        </div>
+
+
+        <div class="skills-list">
+
+
+            <div class="skill reveal">
+
+                <div class="skill-head">
+
+                    <span>
+                        Social Media Strategy & Ads
+                    </span>
+
+                    <span>
+                        95%
+                    </span>
+
+                </div>
+
+                <div class="skill-track">
+
+                    <div
+                        class="skill-fill"
+                        data-width="95%">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-head">
+
+                    <span>
+                        Meta & TikTok Advertising
+                    </span>
+
+                    <span>
+                        90%
+                    </span>
+
+                </div>
+
+                <div class="skill-track">
+
+                    <div
+                        class="skill-fill"
+                        data-width="90%">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-head">
+
+                    <span>
+                        WordPress Development
+                    </span>
+
+                    <span>
+                        92%
+                    </span>
+
+                </div>
+
+                <div class="skill-track">
+
+                    <div
+                        class="skill-fill"
+                        data-width="92%">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-head">
+
+                    <span>
+                        SEO & E-Commerce Listings
+                    </span>
+
+                    <span>
+                        88%
+                    </span>
+
+                </div>
+
+                <div class="skill-track">
+
+                    <div
+                        class="skill-fill"
+                        data-width="88%">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-head">
+
+                    <span>
+                        Graphic Design
+                    </span>
+
+                    <span>
+                        94%
+                    </span>
+
+                </div>
+
+                <div class="skill-track">
+
+                    <div
+                        class="skill-fill"
+                        data-width="94%">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-head">
+
+                    <span>
+                        Content Creation
+                    </span>
+
+                    <span>
+                        90%
+                    </span>
+
+                </div>
+
+                <div class="skill-track">
+
+                    <div
+                        class="skill-fill"
+                        data-width="90%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     RESULTS
+====================================================== -->
+
+<section>
+
+
+    <div class="section-title reveal">
+
+        <div class="section-tag">
+            Performance
+        </div>
+
+        <h2>
+            Results That Can Be
+            <span class="gradient">
+                Measured.
+            </span>
+        </h2>
+
+        <p>
+            These are example case-study figures. Replace
+            them with your verified results before publishing.
+        </p>
+
+    </div>
+
+
+    <div class="results-grid">
+
+
+        <div class="result-card reveal">
+
+            <span class="result-label">
+                E-Commerce
+            </span>
+
+            <h3>
+                Brand Scale Campaign
+            </h3>
+
+            <p>
+                Paid social campaign with creative testing
+                and retargeting.
+            </p>
+
+            <div class="result-metrics">
+
+                <div class="metric">
+
+                    <strong>
+                        4.2x
+                    </strong>
+
+                    <span>
+                        ROAS
+                    </span>
+
+                </div>
+
+                <div class="metric">
+
+                    <strong>
+                        -28%
+                    </strong>
+
+                    <span>
+                        CPA
+                    </span>
+
+                </div>
+
+                <div class="metric">
+
+                    <strong>
+                        $150k+
+                    </strong>
+
+                    <span>
+                        Sales
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-card reveal">
+
+            <span class="result-label">
+                B2B
+            </span>
+
+            <h3>
+                Lead Generation
+            </h3>
+
+            <p>
+                Targeted advertising combined with
+                direct lead communication.
+            </p>
+
+            <div class="result-metrics">
+
+                <div class="metric">
+
+                    <strong>
+                        $45
+                    </strong>
+
+                    <span>
+                        Cost / Lead
+                    </span>
+
+                </div>
+
+                <div class="metric">
+
+                    <strong>
+                        35%
+                    </strong>
+
+                    <span>
+                        Conversion
+                    </span>
+
+                </div>
+
+                <div class="metric">
+
+                    <strong>
+                        120+
+                    </strong>
+
+                    <span>
+                        Leads
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-card reveal">
+
+            <span class="result-label">
+                Product Launch
+            </span>
+
+            <h3>
+                DTC Campaign
+            </h3>
+
+            <p>
+                Short-form content combined with paid
+                advertising and visual discovery.
+            </p>
+
+            <div class="result-metrics">
+
+                <div class="metric">
+
+                    <strong>
+                        1.2M
+                    </strong>
+
+                    <span>
+                        Impressions
+                    </span>
+
+                </div>
+
+                <div class="metric">
+
+                    <strong>
+                        3.8%
+                    </strong>
+
+                    <span>
+                        CTR
+                    </span>
+
+                </div>
+
+                <div class="metric">
+
+                    <strong>
+                        $12k
+                    </strong>
+
+                    <span>
+                        Revenue
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     WHY SOCIAL SPOT
+====================================================== -->
+
+<section>
+
+
+    <div class="section-title reveal">
+
+        <div class="section-tag">
+            Why Social Spot
+        </div>
+
+        <h2>
+            Built Around
+            <span class="gradient">
+                Your Goals.
+            </span>
+        </h2>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+        <div class="why-card reveal">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <h3>
+                Account Safety
+            </h3>
+
+            <p>
+                Client accounts, assets and billing
+                information remain under client control.
+            </p>
+
+        </div>
+
+
+        <div class="why-card reveal">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <h3>
+                Clear Reporting
+            </h3>
+
+            <p>
+                Performance can be tracked through clear
+                campaign and project metrics.
+            </p>
+
+        </div>
+
+
+        <div class="why-card reveal">
+
+            <i class="fa-solid fa-comments"></i>
+
+            <h3>
+                Easy Communication
+            </h3>
+
+            <p>
+                Direct communication through WhatsApp
+                makes project discussions simple.
+            </p>
+
+        </div>
+
+
+        <div class="why-card reveal">
+
+            <i class="fa-solid fa-arrows-rotate"></i>
+
+            <h3>
+                Continuous Improvement
+            </h3>
+
+            <p>
+                Strategies can be adjusted as data,
+                audience behavior and business goals change.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     CONTACT
+====================================================== -->
+
+<section
+    id="contact"
+    class="contact-section">
+
+
+    <div class="contact-box reveal">
+
+
+        <div class="contact-layout">
+
+
+            <div class="contact-info">
+
+                <div class="section-tag">
+                    Let's Work Together
+                </div>
+
+                <h2>
+                    Have a Project
+                    <span class="gradient">
+                        In Mind?
+                    </span>
+                </h2>
+
+                <p>
+                    Tell me about your business and project.
+                    I'll receive your details directly on
+                    WhatsApp.
+                </p>
+
+
+                <div class="contact-details">
+
+                    <div class="contact-detail">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                        <span>
+                            +92 348 7551374
+                        </span>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <span>
+                            hassnainali4563636@gmail.com
+                        </span>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <span>
+                            Sargodha, Pakistan
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <form
+                class="contact-form"
+                id="whatsappForm">
+
+
+                <div class="form-row">
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Your name"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Service
+                        </label>
+
+                        <select
+                            id="service"
+                            required>
+
+                            <option value="">
+                                Select service
+                            </option>
+
+                            <option>
+                                Social Media Marketing
+                            </option>
+
+                            <option>
+                                Meta Ads
+                            </option>
+
+                            <option>
+                                TikTok Ads
+                            </option>
+
+                            <option>
+                                WordPress Development
+                            </option>
+
+                            <option>
+                                SEO
+                            </option>
+
+                            <option>
+                                Graphic Design
+                            </option>
+
+                            <option>
+                                Full Digital Marketing
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Budget
+                        </label>
+
+                        <select id="budget">
+
+                            <option>
+                                Not decided
+                            </option>
+
+                            <option>
+                                $100 - $300
+                            </option>
+
+                            <option>
+                                $300 - $500
+                            </option>
+
+                            <option>
+                                $500 - $1,000
+                            </option>
+
+                            <option>
+                                $1,000+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Project Details
+                    </label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Tell me about your project..."
+                        required>
+                    </textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="form-submit">
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    Send Project Details on WhatsApp
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-inner">
+
+
+        <div class="footer-top">
+
+
+            <div>
+
+                <a
+                    href="#home"
+                    class="footer-logo">
+
+                    Social<span>Spot.</span>
+
+                </a>
+
+                <p class="footer-about">
+
+                    Digital marketing, social media,
+                    WordPress development, SEO and
+                    graphic design solutions by
+                    Hassnain Ali.
+
+                </p>
+
+
+                <div class="socials">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#services">
+                            Services
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#work">
+                            Portfolio
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#skills">
+                            Skills
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Services
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="#services">
+                            Social Media
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#services">
+                            Paid Ads
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#services">
+                            WordPress
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#services">
+                            SEO
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#services">
+                            Graphic Design
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="mailto:hassnainali4563636@gmail.com">
+                            Email Me
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="https://wa.me/923487551374"
+                            target="_blank">
+
+                            WhatsApp
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">
+                            Start a Project
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Social Spot. All rights reserved.
+            </span>
+
+            <span>
+                Designed & Developed by Hassnain Ali
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navMenu =
+    document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    const icon =
+        menuToggle.querySelector("i");
+
+    if (navMenu.classList.contains("active")) {
+
+        icon.classList.remove("fa-bars");
+
+        icon.classList.add("fa-xmark");
+
+    } else {
+
+        icon.classList.remove("fa-xmark");
+
+        icon.classList.add("fa-bars");
+
+    }
+
+});
+
+
+/* Close menu */
+
+document
+    .querySelectorAll(".nav-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+
+            const icon =
+                menuToggle.querySelector("i");
+
+            icon.classList.remove("fa-xmark");
+
+            icon.classList.add("fa-bars");
+
+        });
+
+    });
+
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
+
+const navbar =
+    document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 40) {
+
+        navbar.classList.add("scrolled");
+
+    } else {
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right"
+    );
+
+const observer =
+    new IntersectionObserver(
+
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealElements.forEach(element => {
+
+    observer.observe(element);
+
+});
+
+
+/* =========================================================
+   ANIMATED SKILL BARS
+========================================================= */
+
+const skillSection =
+    document.getElementById("skills");
+
+const skillObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            if (entries[0].isIntersecting) {
+
+                document
+                    .querySelectorAll(".skill-fill")
+                    .forEach(bar => {
+
+                        const width =
+                            bar.getAttribute("data-width");
+
+                        bar.style.width = width;
+
+                    });
+
+                skillObserver.disconnect();
+
+            }
+
+        },
+
+        {
+            threshold: 0.2
+        }
+
+    );
+
+
+skillObserver.observe(skillSection);
+
+
+/* =========================================================
+   WHATSAPP FORM
+========================================================= */
+
+const form =
+    document.getElementById("whatsappForm");
+
+form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+
+    const name =
+        document.getElementById("name")
+        .value
+        .trim();
+
+    const email =
+        document.getElementById("email")
+        .value
+        .trim();
+
+    const service =
+        document.getElementById("service")
+        .value;
+
+    const budget =
+        document.getElementById("budget")
+        .value;
+
+    const message =
+        document.getElementById("message")
+        .value
+        .trim();
+
+
+    const phone =
+        "923487551374";
+
+
+    const text =
+
+        `Hello Hassnain, I want to discuss a project.%0A%0A` +
+
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+
+        `*Email:* ${encodeURIComponent(email)}%0A` +
+
+        `*Service:* ${encodeURIComponent(service)}%0A` +
+
+        `*Budget:* ${encodeURIComponent(budget)}%0A` +
+
+        `*Project Details:* ${encodeURIComponent(message)}`;
+
+
+    const url =
+        `https://wa.me/${phone}?text=${text}`;
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+});
+
+
+/* =========================================================
+   PARALLAX EFFECT FOR PROFILE
+========================================================= */
+
+const profile =
+    document.querySelector(".profile-box");
+
+document.addEventListener("mousemove", event => {
+
+    if (window.innerWidth < 900) return;
+
+
+    const x =
+        (window.innerWidth / 2 - event.clientX) / 50;
+
+    const y =
+        (window.innerHeight / 2 - event.clientY) / 50;
+
+
+    profile.style.transform =
+        `rotate(3deg) translate(${x}px, ${y}px)`;
+
+});
+
+
+/* Reset profile when mouse leaves */
+
+document.addEventListener("mouseleave", () => {
+
+    profile.style.transform =
+        "rotate(4deg)";
+
+});
+
+</script>
+
+</body>
+</html>
